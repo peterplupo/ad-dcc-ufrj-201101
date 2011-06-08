@@ -9,9 +9,9 @@ package simulator;
 public class Random {
 	
 	/**
-	 * Construtor da classe
+	 * Construtor da classe - implementacao singleton
 	 * @param rate
-	 * Taxa da variável aleatória exponencial.
+	 * Taxa da variável aleatoria exponencial.
 	 */
 	public Random(double rate) {
 		
@@ -19,20 +19,10 @@ public class Random {
 	
 	//possivelmente ficara depreciada, e a classe modificada para ser só uma exponencial
 	/**
-	 * Metodo para retornar um valor inteiro aleatório
+	 * Metodo para retornar um valor aleatorio de 0 a 1
 	 * @return valor aleatório inteiro
 	 */
-	public int getRandomValue() {
+	public double getRandomValue() {
 		return 4; //definido aleatoriamente ;)
-	}
-	
-	//depois de implementar, gerar vários valores e ver se comporta-se como uma exponencial
-	//medir média e variância
-	/**
-	 * Retorna um valor aleatório de acordo com a distribuição aleatória da exponencial
-	 * @return valor aleatório retornado
-	 */
-	public double getExponentialRandomValue() {
-		return 4;
 	}
 }

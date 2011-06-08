@@ -5,6 +5,7 @@ package simulator;
  * @author dalves
  *
  */
+//Contem um object EventClassA para indicar quando é a proxima chegada na fila 1 e uma fila de EventClassB para as chegadas na fila 2 ainda não processadas
 public class EventQueue {
 
 }
