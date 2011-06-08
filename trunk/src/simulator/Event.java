@@ -8,6 +8,10 @@ package simulator;
 public abstract class Event {
 	//possivelmente nao precisaremos do type para o event
 	
+	public Event(double time, int color) {
+		
+	}
+	
 	/**
 	 * Tempo de ocorrência do evento, por exemplo, quando ocorre uma chegada
 	 * @return
@@ -21,7 +25,7 @@ public abstract class Event {
 	 * Retorna a 'cor' da fase do evento
 	 * @return
 	 */
-	public double color() {
+	public int color() {
 		return 0;
 	}
 }
