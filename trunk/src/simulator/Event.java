@@ -6,18 +6,25 @@ package simulator;
  *
  */
 public abstract class Event {
-	//possivelmente nao precisaremos do type para o event
+	private double time;
+	private int color;
 	
+	/**
+	 * Construtor padrao 
+	 * @param time
+	 * @param color
+	 */
 	public Event(double time, int color) {
-		
+		this.time = time;
+		this.color = color;
 	}
 	
 	/**
 	 * Tempo de ocorrência do evento, por exemplo, quando ocorre uma chegada
 	 * @return
 	 */
-	public double time() {
-		return 0;
+	public double getTime() {
+		return time;
 	}
 	
 	//acho que so numero fica um pouco indefinido demais
@@ -25,7 +32,7 @@ public abstract class Event {
 	 * Retorna a 'cor' da fase do evento
 	 * @return
 	 */
-	public int color() {
-		return 0;
+	public int getColor() {
+		return color;
 	}
 }

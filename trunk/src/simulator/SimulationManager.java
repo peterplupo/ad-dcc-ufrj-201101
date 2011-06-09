@@ -6,5 +6,11 @@ package simulator;
  *
  */
 public class SimulationManager {
-
+	/**
+	 * Fornece a semente da simulacao
+	 * @return
+	 */
+	public static long getSeed() {
+		return 0;
+	}
 }
