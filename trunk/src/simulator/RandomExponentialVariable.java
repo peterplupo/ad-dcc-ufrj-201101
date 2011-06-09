@@ -2,10 +2,19 @@ package simulator;
 
 import java.util.Random;
 
+/**
+ * 
+ * @author Mariam
+ *
+ */
 public class RandomExponentialVariable {
 	private double rate;
 	private static Random generator;
 	
+	/**
+	 * Construtor padrao 
+	 * @param rate
+	 */
 	public RandomExponentialVariable(double rate) {
 		// TODO Auto-generated constructor stub
 		this.rate = rate;
@@ -24,7 +33,7 @@ public class RandomExponentialVariable {
 
 	/**
 	 * Metodo para media
-	 * @return
+	 * @return media da exponencial
 	 */
 	public double getExpected() {
 		return 1 / rate;
@@ -32,7 +41,7 @@ public class RandomExponentialVariable {
 	
 	/**
 	 * Metodo para variancia
-	 * @return
+	 * @return variancia da exponencial
 	 */
 	public double getVariance() {
 		return 1 / (rate*rate);

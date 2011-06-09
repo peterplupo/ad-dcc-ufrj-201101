@@ -1,7 +1,7 @@
 package simulator;
 
 /**
- * Classe para representar a ocorrência de um evento genérico
+ * Classe para representar a ocorrencia de um evento generico
  * @author dalves
  *
  */
@@ -20,8 +20,8 @@ public abstract class Event {
 	}
 	
 	/**
-	 * Tempo de ocorrência do evento, por exemplo, quando ocorre uma chegada
-	 * @return
+	 * Tempo de ocorrencia do evento, por exemplo, quando ocorre uma chegada
+	 * @return instante de tempo em que o evento ocorre
 	 */
 	public double getTime() {
 		return time;
@@ -30,7 +30,7 @@ public abstract class Event {
 	//acho que so numero fica um pouco indefinido demais
 	/**
 	 * Retorna a 'cor' da fase do evento
-	 * @return
+	 * @return 'cor' da fase
 	 */
 	public int getColor() {
 		return color;

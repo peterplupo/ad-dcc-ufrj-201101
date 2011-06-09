@@ -1,7 +1,7 @@
 package simulator;
 
 /**
- * Classe para representar um evento de chegada na fila 2
+ * Classe que representa evento de chegada na fila 2
  * @author Mariam
  *
  */
