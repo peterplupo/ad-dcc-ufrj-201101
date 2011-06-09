@@ -6,12 +6,23 @@ package simulator;
  *
  */
 public class Metrics {
+	private double sum;
+	private double sumOfSquares;
+	private int count;
+	
+	/** 
+	 * Construtor
+	 */
+	public Metrics() {
+		sum = sumOfSquares = count = 0;
+	}
+	
 	/**
 	 * Retorna a media dos valores acumulados 
 	 * @return a media
 	 */
 	public double getMean() {
-		return 0;
+		return sum / count;
 	}
 	
 	/**
@@ -19,7 +30,8 @@ public class Metrics {
 	 * @return a variancia
 	 */
 	public double getVariance() {
-		return 0;
+		double nMenosUm = count - 1;
+		return sumOfSquares / nMenosUm - sum*sum/(count*nMenosUm);
 	}
 	
 	/**
@@ -27,6 +39,8 @@ public class Metrics {
 	 * @param value
 	 */
 	public void insertValue(double value) {
-	
+		sum += value;
+		sumOfSquares += value*value;
+		count++;
 	}
 }
