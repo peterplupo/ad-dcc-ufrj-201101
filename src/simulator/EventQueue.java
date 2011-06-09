@@ -5,7 +5,7 @@ package simulator;
  * @author dalves
  *
  */
-//Contem um object EventClassA para indicar quando � a proxima chegada na fila 1 e uma fila de EventClassB para as chegadas na fila 2 ainda n�o processadas
+//Contem um object EventClassA para indicar quando eh a proxima chegada na fila 1 e uma fila de EventClassB para as chegadas na fila 2 ainda nao processadas
 public class EventQueue {
 	
 }

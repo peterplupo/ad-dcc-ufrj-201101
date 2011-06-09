@@ -11,7 +11,7 @@ public class Metrics {
 	private int count;
 	
 	/** 
-	 * Construtor
+	 * Construtor padrao
 	 */
 	public Metrics() {
 		sum = sumOfSquares = count = 0;
@@ -26,7 +26,7 @@ public class Metrics {
 	}
 	
 	/**
-	 * Retorna a variancia dos valores acumulados
+	 * Retorna a variancia dos valores acumulados (estimador da variancia da amostra)
 	 * @return a variancia
 	 */
 	public double getVariance() {
@@ -35,7 +35,7 @@ public class Metrics {
 	}
 	
 	/**
-	 * Acumula mais um valor para os calculos
+	 * Acumula mais um valor a cada medida para os calculos
 	 * @param value
 	 */
 	public void insertValue(double value) {

@@ -1,6 +1,5 @@
 package simulator;
 
-
 /**
  * Classe que representa evento de chegada na fila 1
  * @author Mariam
