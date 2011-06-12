@@ -3,7 +3,7 @@ package simulator;
 import java.util.Random;
 
 /**
- * 
+ * Classe que representa uma variavel aleatoria exponencial
  * @author Mariam
  *
  */
@@ -27,7 +27,7 @@ public class RandomExponentialVariable {
 	 * Retorna um valor aleatorio de acordo com a distribuicao aleatoria da exponencial
 	 * @return valor aleatorio retornado
 	 */
-	public double getExponentialRandomValue() {
+	public double getValue() {
 		return -Math.log(1 - generator.nextDouble()) / rate;
 	}
 
