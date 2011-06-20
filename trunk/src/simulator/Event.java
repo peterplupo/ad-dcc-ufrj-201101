@@ -19,6 +19,10 @@ public abstract class Event {
 		this.color = color;
 	}
 	
+	public void setTime(double time) {
+		this.time = time;
+	}
+	
 	/**
 	 * Tempo de ocorrencia do evento, por exemplo, quando ocorre uma chegada
 	 * @return instante de tempo em que o evento ocorre
