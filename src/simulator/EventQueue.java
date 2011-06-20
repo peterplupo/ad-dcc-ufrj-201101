@@ -19,6 +19,11 @@ public class EventQueue {
 		queue = new LinkedList<EventClassB>();
 	}
 	
+	/**
+	 * Metodo para processar o proximo evento,
+	 * realizando as operações necessárias na fila
+	 * e capturando as métricas
+	 */
 	public void processNextEvent() {
 		
 	}
