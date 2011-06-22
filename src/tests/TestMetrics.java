@@ -24,7 +24,7 @@ public class TestMetrics {
 		for (Integer value : values) {
 			metrics.insertValue(value);
 		}
-		assertEquals( 3, metrics.getMean());
+		assertEquals( 3, metrics.getMean(), 0.1);
 	}
 
 	@Test
