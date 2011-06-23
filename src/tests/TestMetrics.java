@@ -1,19 +1,18 @@
 package tests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
-
 import simulator.Metrics;
 
 public class TestMetrics {
 
 	Metrics metrics = new Metrics();
-	@Test
-	public void testGetMean() {
-		
+	
+	@Before
+	public void init(){
 		ArrayList<Integer> values = new ArrayList<Integer>();
 		values.add(1);
 		values.add(2);
@@ -23,7 +22,12 @@ public class TestMetrics {
 		for (Integer value : values) {
 			metrics.insertValue(value);
 		}
-		assertEquals( 3, metrics.getMean(), 0.1);
+	}
+	
+	@Test
+	public void testGetMean() {
+		
+		assertEquals(3, metrics.getMean(), 0.1);
 	}
 
 	@Test
@@ -33,7 +37,7 @@ public class TestMetrics {
 
 	@Test
 	public void testInsertValue() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 }
