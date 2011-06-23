@@ -43,4 +43,8 @@ public class Metrics {
 		sumOfSquares += value*value;
 		count++;
 	}
+	
+	public double getDensity(double total) {
+		return sum / total;
+	}
 }

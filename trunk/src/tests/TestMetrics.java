@@ -24,10 +24,11 @@ public class TestMetrics {
 		}
 	}
 	
+	//verificar qual seria um bom epslon
 	@Test
 	public void testGetMean() {
 		
-		assertEquals(3, metrics.getMean(), 0.1);
+		assertEquals(3, metrics.getMean(), 0.000001);
 	}
 
 	@Test
@@ -37,7 +38,7 @@ public class TestMetrics {
 
 	@Test
 	public void testInsertValue() {
-		//fail("Not yet implemented");
+		fail("Not yet implemented");
 	}
 
 }

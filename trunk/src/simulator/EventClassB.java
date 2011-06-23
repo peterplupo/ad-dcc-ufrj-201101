@@ -45,6 +45,10 @@ public class EventClassB extends Event {
 		}
 	}
 	
+	public double getTempoRestante() {
+		return tempoRestante;
+	}
+	
 	public double getTempoServico() {
 		return tempoServico;
 	}
