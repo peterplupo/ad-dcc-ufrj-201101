@@ -13,32 +13,36 @@ public class TestMetrics {
 	
 	@Before
 	public void init(){
-		ArrayList<Integer> values = new ArrayList<Integer>();
-		values.add(1);
-		values.add(2);
-		values.add(3);
-		values.add(4);
-		values.add(5);
-		for (Integer value : values) {
+		ArrayList<Double> values = new ArrayList<Double>();
+		values.add(24.2);
+		values.add(24.4);
+		values.add(28.5);
+		values.add(25.3);
+		values.add(32.2);
+		values.add(19.6);
+		values.add(32.9);
+		values.add(21.3);
+		values.add(24.0);
+		values.add(26.5);
+		for (Double value : values) {
 			metrics.insertValue(value);
 		}
 	}
 	
 	//verificar qual seria um bom epslon
 	@Test
-	public void testGetMean() {
-		
-		assertEquals(3, metrics.getMean(), 0.000001);
+	public void testGetMean() {	
+		assertEquals(25.89, metrics.getMean(), 0.000001);
 	}
 
 	@Test
 	public void testGetVariance() {
-		fail("Not yet implemented");
+		assertEquals(18.4, metrics.getVariance(), 0.000001);
 	}
 
 	@Test
 	public void testInsertValue() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 }
