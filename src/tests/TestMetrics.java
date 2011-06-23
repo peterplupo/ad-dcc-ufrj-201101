@@ -11,7 +11,6 @@ import simulator.Metrics;
 public class TestMetrics {
 
 	Metrics metrics = new Metrics();
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetMean() {
 		
