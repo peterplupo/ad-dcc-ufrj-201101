@@ -14,7 +14,16 @@ public class EventClassA extends Event {
 		super(time, color);
 	}
 	
-	public void servir(double tempo) {
-		
+	public void servir(double tempo, double tempoServico) {
+		this.tempoServico = tempoServico;
+		tempoAtraso = tempo - getTime();
+	}
+	
+	public double getTempoAtraso() {
+		return tempoAtraso;
+	}
+	
+	public double getTempoServico() {
+		return tempoServico;
 	}
 }

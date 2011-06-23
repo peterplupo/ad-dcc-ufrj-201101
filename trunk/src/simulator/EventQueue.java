@@ -25,6 +25,29 @@ public class EventQueue {
 	 * e capturando as métricas
 	 */
 	public void processNextEvent() {
+		/*
+		 * logica a ser implementada:
+		 * verificar quando ocorre a proxima chegada1
+		 * verificar quando ocorre a proxima chegada2
+		 * Se a chegada1 for primeiro (ou não há chegada2 na fila), trata-la e avançar o relogio
+		 * senão, verifica quanto tempo ha disponivel ate a proxima chegada1 e trata o quanto puder a 2
+		 */
+		EventClassB chegada2 = queue.peekFirst();
+		
+		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime()) {
+			//tratar chegada1
+			processEventClassA();
+		} else {
+			//tratar chegada2
+			
+		}
+	}
+	
+	private void processEventClassA() {
+		
+	}
+
+	private void processEventClassB(double tempoDisponivel) {
 		
 	}
 }
