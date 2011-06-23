@@ -12,11 +12,23 @@ public class EventQueue {
 	private EventClassA chegada1;
 	private LinkedList<EventClassB> queue;
 	private int color;
+	private double tempo;
+	private RandomExponentialVariable exponencialServico;
+	private double taxaServico;
+	private MetricsCollection metricsCollection;
+	private double taxaChegada;
+	private RandomExponentialVariable exponencialChegada;
 	
-	public EventQueue() {
+	public EventQueue(double use) {
+		tempo = 0;
 		color = 0;
 		chegada1 = new EventClassA(0, color);
 		queue = new LinkedList<EventClassB>();
+		taxaServico = 1;
+		exponencialServico = new RandomExponentialVariable(taxaServico);
+		metricsCollection = new MetricsCollection();
+		taxaChegada = use / 2;
+		exponencialChegada = new RandomExponentialVariable(taxaChegada);
 	}
 	
 	/**
@@ -26,28 +38,56 @@ public class EventQueue {
 	 */
 	public void processNextEvent() {
 		/*
-		 * logica a ser implementada:
-		 * verificar quando ocorre a proxima chegada1
-		 * verificar quando ocorre a proxima chegada2
-		 * Se a chegada1 for primeiro (ou não há chegada2 na fila), trata-la e avançar o relogio
+		 * logica implementada:
+		 * verifica quando ocorre a proxima chegada1
+		 * verifica quando ocorre a proxima chegada2
+		 * Se a chegada1 for primeiro (ou não há chegada2 na fila), trata-a e avança o relogio
 		 * senão, verifica quanto tempo ha disponivel ate a proxima chegada1 e trata o quanto puder a 2
 		 */
 		EventClassB chegada2 = queue.peekFirst();
 		
 		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime()) {
-			//tratar chegada1
+			//trata chegada1
 			processEventClassA();
 		} else {
-			//tratar chegada2
-			
+			//trata chegada2
+			processEventClassB(chegada1.getTime() - tempo);
 		}
 	}
 	
 	private void processEventClassA() {
+		double tempoServico = exponencialServico.getValue();
 		
+		chegada1.servir(tempo, tempoServico);
+		tempo += tempoServico;
+		if (chegada1.getColor() == color) {
+			metricsCollection.collect(chegada1);
+		}
+		chegada1 = new EventClassA(chegada1.getTime() + exponencialChegada.getValue(), color);
 	}
 
 	private void processEventClassB(double tempoDisponivel) {
+		EventClassB event = queue.peekFirst();
+		double tempoServico;
+		if (event.hasServico()) {
+			tempoServico = event.getTempoRestante();
+			event.continuarServico(tempo, tempoDisponivel);
+		} else {
+			tempoServico = exponencialServico.getValue();
+			event.iniciarServico(tempo, tempoServico, tempoDisponivel);
+		}
 		
+		if (event.hasServico()) {
+			tempo += tempoDisponivel;
+		} else {
+			tempo += tempoServico;
+			if (event.getColor() == color) {
+				metricsCollection.collect(event);
+			}
+		}
+	}
+	
+	public void advanceColor() {
+		++color;
 	}
 }
