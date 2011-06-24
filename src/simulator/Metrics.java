@@ -9,6 +9,8 @@ public class Metrics {
 	private double sum;
 	private double sumOfSquares;
 	private int count;
+	private double t = 1.96; //t-student para acerto de 95%
+	private double deviation;
 	
 	/** 
 	 * Construtor padrao
@@ -50,5 +52,28 @@ public class Metrics {
 	
 	public double getDensity(double total) {
 		return sum / total;
+	}
+	
+	/*
+	 * Calcula o módulo do desvio da amostra
+	 */
+	public void calculateDeviation(){
+		deviation = Math.sqrt(getVariance()/count) * t;
+	}
+	
+	/*
+	 * Retorna o limite superior do desvio da amostra
+	 * @return a cota superior
+	 */
+	public double getSuperiorLimit(){
+		return getMean() + deviation;
+	}
+	
+	/*
+	 * Retorna o limite inferior do desvio da amostra
+	 * @return a cota inferior
+	 */
+	public double getInferiorLimit(){
+		return getMean() - deviation;
 	}
 }
