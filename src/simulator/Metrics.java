@@ -54,14 +54,14 @@ public class Metrics {
 		return sum / total;
 	}
 	
-	/*
+	/**
 	 * Calcula o módulo do desvio da amostra
 	 */
 	public void calculateDeviation(){
 		deviation = Math.sqrt(getVariance()/count) * t;
 	}
 	
-	/*
+	/**
 	 * Retorna o limite superior do desvio da amostra
 	 * @return a cota superior
 	 */
@@ -69,7 +69,7 @@ public class Metrics {
 		return getMean() + deviation;
 	}
 	
-	/*
+	/**
 	 * Retorna o limite inferior do desvio da amostra
 	 * @return a cota inferior
 	 */
