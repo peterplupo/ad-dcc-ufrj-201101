@@ -10,7 +10,8 @@ public class Metrics {
 	private double sumOfSquares;
 	private int count;
 	private double t = 1.96; //t-student para acerto de 95%
-	private double deviation;
+	private double deviation, deviationN; //desvio do tempo e do nº de pessoas na fila
+	private double total;
 	
 	/** 
 	 * Construtor padrao
@@ -50,10 +51,6 @@ public class Metrics {
 		count++;
 	}
 	
-	public double getDensity(double total) {
-		return sum / total;
-	}
-	
 	/**
 	 * Calcula o módulo do desvio da amostra
 	 */
@@ -76,4 +73,49 @@ public class Metrics {
 	public double getInferiorLimit(){
 		return getMean() - deviation;
 	}
+	
+	/**
+	 * Retorna a media da fila
+	 * @param total
+	 * @return
+	 */
+	public double getMeanN() {
+		return sum / total;
+	}
+	
+	/**
+	 * Retorna a variancia dos valores acumulados (estimador da variancia da amostra)
+	 * @return a variancia da fila
+	 */
+	public double getVarianceN() {
+		double nMenosUm = total - 1;
+		return sumOfSquares / nMenosUm - sum*sum/(total*nMenosUm);
+	}
+	
+	/**
+	 * Calcula o módulo do desvio da amostra na fila
+	 */
+	public void calculateDeviationN(){
+		deviationN = Math.sqrt(getVariance()/total) * t;
+	}
+	
+	/**
+	 * Retorna o limite superior do desvio da amostra
+	 * @return a cota superior da fila
+	 */
+	public double getSuperiorLimitN(){
+		return getMean() + deviationN;
+	}
+	
+	/**
+	 * Retorna o limite inferior do desvio da amostra
+	 * @return a cota inferior da fila
+	 */
+	public double getInferiorLimitN(){
+		return getMean() - deviationN;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}	
 }
