@@ -25,8 +25,8 @@ public class SimulationManager {
 		// TODO definir um total aceitável
 		minFases = 20;
 		minEvents = 100;
-		eventsTransient = 100;
-		tolerance = 0.1;
+		eventsTransient = 10000000;
+		tolerance = 100;
 		this.seed = seed;
 		metricsAgregator = new MetricsAgregator();
 	}
@@ -35,13 +35,18 @@ public class SimulationManager {
 		EventQueue eventQueue = new EventQueue(useRate);
 		metricsCollection = eventQueue.getMetricsCollection();
 		
+		System.out.println("Iniciando fase transiente.");
 		// TODO aqui devemos verificar se ainda está na fase transiente
 		for (int i = 0; i < eventsTransient; ++i) {
 			eventQueue.processNextEvent();
 		}
 		metricsAgregator.clean();
+		System.out.println("Fim da fase transiente.");
 
-		for (int i = 0; i < minFases; i++) {
+		System.out.println("Iniciando rodadas coloridas");
+		int i;
+		for (i = 0; i < minFases; i++) {
+			System.out.println("Rodada " + i);
 			runOne(eventQueue);
 			// TODO aqui devemos acumular os resultados para composição
 			metricsAgregator.collect(metricsCollection);
@@ -54,16 +59,20 @@ public class SimulationManager {
 				|| metricsAgregator.getDeviationNTotal2() > tolerance
 				|| metricsAgregator.getDeviationNAtraso1() > tolerance
 				|| metricsAgregator.getDeviationNAtraso2() > tolerance) {
+			System.out.println("Rodada " + i);
 			runOne(eventQueue);
 			// TODO aqui devemos acumular os resultados para composição
 			metricsAgregator.collect(metricsCollection);
+			++i;
 		}
 	}
 	
 	private void runOne(EventQueue eventQueue) {
 		
 		// TODO aqui verificamos se devemos trocar de fase
-		for (int i = 0; i < minEvents; ++i) {
+		int i;
+		for (i = 0; i < minEvents; ++i) {
+			System.out.println("Processando evento " + i);
 			eventQueue.processNextEvent();
 		}
 		// TODO aqui verificamos se deve avançar a fase
@@ -75,7 +84,9 @@ public class SimulationManager {
 				|| metricsCollection.getDeviationNTotal2() > tolerance
 				|| metricsCollection.getDeviationNAtraso1() > tolerance
 				|| metricsCollection.getDeviationNAtraso2() > tolerance) {
+			System.out.println("Processando evento " + i + ": " + metricsCollection.getDeviationTotal1());
 			eventQueue.processNextEvent();
+			++i;
 		}
 	}
 	
