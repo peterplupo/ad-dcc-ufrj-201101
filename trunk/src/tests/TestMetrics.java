@@ -37,7 +37,7 @@ public class TestMetrics {
 
 	@Test
 	public void testGetVariance() {
-		assertEquals(18.4, metrics.getVariance(), 0.000001);
+		assertEquals(18.418777, metrics.getVariance(), 0.000001);
 	}
 
 	@Test
@@ -45,4 +45,13 @@ public class TestMetrics {
 		//fail("Not yet implemented");
 	}
 
+	@Test
+	public void testGetSuperLimit(){
+		assertEquals(25.889999, metrics.getSuperiorLimit(), 0.000001);
+	}
+	
+	@Test
+	public void testGetInferiorLimit(){
+		assertEquals(15.0, metrics.getInferiorLimit(), 0.000001);
+	}
 }
