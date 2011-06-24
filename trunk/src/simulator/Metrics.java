@@ -17,6 +17,10 @@ public class Metrics {
 		sum = sumOfSquares = count = 0;
 	}
 	
+	public void clean() {
+		sum = sumOfSquares = count = 0;
+	}
+	
 	/**
 	 * Retorna a media dos valores acumulados 
 	 * @return a media
