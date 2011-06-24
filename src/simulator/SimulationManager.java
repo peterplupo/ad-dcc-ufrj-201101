@@ -26,7 +26,7 @@ public class SimulationManager {
 		minFases = 20;
 		minEvents = 100;
 		eventsTransient = 10000000;
-		tolerance = 100;
+		tolerance = 0.1;
 		this.seed = seed;
 		metricsAgregator = new MetricsAgregator();
 	}
@@ -85,6 +85,14 @@ public class SimulationManager {
 				|| metricsCollection.getDeviationNAtraso1() > tolerance
 				|| metricsCollection.getDeviationNAtraso2() > tolerance) {
 			System.out.println("Processando evento " + i + ": " + metricsCollection.getDeviationTotal1());
+			System.out.println(metricsCollection.getDeviationTotal1());
+			System.out.println(metricsCollection.getDeviationTotal2());
+			System.out.println(metricsCollection.getDeviationNTotal1());
+			System.out.println(metricsCollection.getDeviationNTotal2());
+			System.out.println(metricsCollection.getDeviationAtraso1());
+			System.out.println(metricsCollection.getDeviationAtraso2());
+			System.out.println(metricsCollection.getDeviationNAtraso1());
+			System.out.println(metricsCollection.getDeviationNAtraso2());
 			eventQueue.processNextEvent();
 			++i;
 		}

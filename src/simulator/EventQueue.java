@@ -58,6 +58,7 @@ public class EventQueue {
 	private void processEventClassA() {
 		double tempoServico = exponencialServico.getValue();
 		
+		tempo = chegada1.getTime();
 		chegada1.servir(tempo, tempoServico);
 		tempo += tempoServico;
 		if (chegada1.getColor() == color) {

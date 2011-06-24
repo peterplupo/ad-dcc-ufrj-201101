@@ -58,7 +58,11 @@ public class Metrics {
 	 * Calcula o módulo do desvio da amostra
 	 */
 	private void calculateDeviation(){
-		deviation = Math.sqrt(getVariance()/count) * t;
+		if (count == 0) {
+			deviation = 0;
+		} else {
+			deviation = Math.sqrt(getVariance()/count) * t;
+		}
 	}
 	
 	/**
@@ -93,6 +97,7 @@ public class Metrics {
 	 * Requer que o intervalo total de tempo tenha sido definido
 	 * @return a variancia da fila
 	 */
+	// TODO verificar corretude
 	public double getVarianceN() {
 		double nMenosUm = timeInterval - 1;
 		return sumOfSquares / nMenosUm - sum*sum/(timeInterval*nMenosUm);
@@ -103,7 +108,11 @@ public class Metrics {
 	 * Requer que o intervalo total de tempo tenha sido definido
 	 */
 	public void calculateDeviationN(){
-		deviationN = Math.sqrt(getVarianceN()/timeInterval) * t;
+		if (timeInterval == 0) {
+			deviationN = 0;
+		} else {
+			deviationN = Math.sqrt(getVarianceN()/timeInterval) * t;		
+		}
 	}
 	
 	/**
