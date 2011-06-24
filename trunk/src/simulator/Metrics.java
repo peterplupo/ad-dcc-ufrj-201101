@@ -103,7 +103,7 @@ public class Metrics {
 	 * Requer que o intervalo total de tempo tenha sido definido
 	 */
 	public void calculateDeviationN(){
-		deviationN = Math.sqrt(getVariance()/timeInterval) * t;
+		deviationN = Math.sqrt(getVarianceN()/timeInterval) * t;
 	}
 	
 	/**
