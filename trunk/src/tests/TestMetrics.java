@@ -27,6 +27,7 @@ public class TestMetrics {
 		for (Double value : values) {
 			metrics.insertValue(value);
 		}
+		metrics.calculateDeviation();
 	}
 	
 	//verificar qual seria um bom epslon
@@ -47,11 +48,13 @@ public class TestMetrics {
 
 	@Test
 	public void testGetSuperLimit(){
+		System.out.println(metrics.getSuperiorLimit());
 		assertEquals(25.889999, metrics.getSuperiorLimit(), 0.000001);
 	}
 	
 	@Test
 	public void testGetInferiorLimit(){
+		System.out.println(metrics.getInferiorLimit());
 		assertEquals(15.0, metrics.getInferiorLimit(), 0.000001);
 	}
 }
