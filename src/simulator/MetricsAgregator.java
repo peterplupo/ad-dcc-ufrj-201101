@@ -1,48 +1,42 @@
 package simulator;
 
-/**
- * Classe para agregar os resultados de cada rodada.
- * @author daniel
- *
- */
-public class MetricsCollection {
-	private Metrics total1, atraso1, total2, atraso2;
+public class MetricsAgregator {
+	Metrics total1, total2, atraso1, atraso2;
+	Metrics totalN1, totalN2, atrasoN1, atrasoN2;
 	
-	public MetricsCollection() {
+	public MetricsAgregator() {
 		total1 = new Metrics();
-		atraso1 = new Metrics();
 		total2 = new Metrics();
+		atraso1 = new Metrics();
 		atraso2 = new Metrics();
+		
+		totalN1 = new Metrics();
+		totalN2 = new Metrics();
+		atrasoN1 = new Metrics();
+		atrasoN2 = new Metrics();
+	}
+
+	public void collect(MetricsCollection metricsCollection) {
+		total1.insertValue(metricsCollection.getMeanTotal1(), 0);
+		total2.insertValue(metricsCollection.getMeanTotal2(), 0);
+		atraso1.insertValue(metricsCollection.getMeanAtraso1(), 0);
+		atraso2.insertValue(metricsCollection.getMeanAtraso2(), 0);
+		
+		totalN1.insertValue(metricsCollection.getMeanNFila1(), 0);
+		totalN2.insertValue(metricsCollection.getMeanNFila2(), 0);
+		atrasoN1.insertValue(metricsCollection.getMeanNAtraso1(), 0);
+		atrasoN2.insertValue(metricsCollection.getMeanNAtraso2(), 0);
 	}
 	
-	/**
-	 * Coleta os dados de um EventClassA, considerando até o momento um intervalo de tempo total timeInterval
-	 * @param event
-	 * @param timeInterval
-	 */
-	public void collect(EventClassA event, double timeInterval) {
-		total1.insertValue(event.getTempoAtraso() + event.getTempoServico(), timeInterval);
-		atraso1.insertValue(event.getTempoAtraso(), timeInterval);
-	}
-	
-	/**
-	 * Coleta os dados de um EventClassB, considerando até o momento um intervalo de tempo total timeInterval
-	 * @param event
-	 * @param timeInterval
-	 */
-	public void collect(EventClassB event, double timeInterval) {
-		total2.insertValue(event.getTempoAtraso() + event.getTempoServico(), timeInterval);
-		atraso2.insertValue(event.getTempoAtraso(), timeInterval);
-	}
-	
-	/**
-	 * Prepara para uma nova rodada de coleta de dados
-	 */
 	public void clean() {
 		total1.clean();
-		atraso1.clean();
 		total2.clean();
+		atraso1.clean();
 		atraso2.clean();
+		totalN1.clean();
+		totalN2.clean();
+		atrasoN1.clean();
+		atrasoN2.clean();
 	}
 	
 	/**
@@ -98,7 +92,7 @@ public class MetricsCollection {
 	 * @return Media da quantidade total na fila 1
 	 */
 	public double getMeanNFila1() {
-		return total1.getMeanN();
+		return totalN1.getMean();
 	}
 	
 	/**
@@ -106,7 +100,7 @@ public class MetricsCollection {
 	 * @return Media da quantidade em espera na fila 1
 	 */
 	public double getMeanNAtraso1() {
-		return atraso1.getMeanN();
+		return atrasoN1.getMean();
 	}
 	
 	/**
@@ -114,7 +108,7 @@ public class MetricsCollection {
 	 * @return Media da quantidade total na fila 2
 	 */
 	public double getMeanNFila2() {
-		return total2.getMeanN();
+		return totalN2.getMean();
 	}
 	
 	/**
@@ -122,7 +116,7 @@ public class MetricsCollection {
 	 * @return Media da quantidade em espera na fila 2
 	 */
 	public double getMeanNAtraso2() {
-		return atraso2.getMeanN();
+		return atrasoN2.getMean();
 	}
 	
 	/**
@@ -194,7 +188,7 @@ public class MetricsCollection {
 	 * @return Limite superior do intervalo de confianca da media da quantidade total da fila 1
 	 */
 	public double getSuperiorLimitNFila1() {
-		return total1.getSuperiorLimitN();
+		return totalN1.getSuperiorLimit();
 	}
 	
 	/**
@@ -202,7 +196,7 @@ public class MetricsCollection {
 	 * @return Limite inferior do intervalo de confianca da media da quantidade total da fila 1
 	 */
 	public double getInferiorLimitNFila1() {
-		return total1.getInferiorLimitN();
+		return totalN1.getInferiorLimit();
 	}
 	
 	/**
@@ -210,7 +204,7 @@ public class MetricsCollection {
 	 * @return Limite superior do intervalo de confianca da media da quantidade total da fila 2
 	 */
 	public double getSuperiorLimitNFila2() {
-		return total2.getSuperiorLimitN();
+		return totalN2.getSuperiorLimit();
 	}
 	
 	/**
@@ -218,7 +212,7 @@ public class MetricsCollection {
 	 * @return Limite inferior do intervalo de confianca da media da quantidade total da fila 2
 	 */
 	public double getInferiorLimitNFila2() {
-		return total2.getInferiorLimitN();
+		return totalN2.getInferiorLimit();
 	}
 	
 	/**
@@ -234,7 +228,7 @@ public class MetricsCollection {
 	 * @return Limite inferior do intervalo de confianca da media da quantidade em espera da fila 1
 	 */
 	public double getInferiorLimitNAtraso1() {
-		return atraso1.getInferiorLimitN();
+		return atrasoN1.getInferiorLimit();
 	}
 	
 	/**
@@ -242,7 +236,7 @@ public class MetricsCollection {
 	 * @return Limite superior do intervalo de confianca da media da quantidade em espera da fila 2
 	 */
 	public double getSuperiorLimitNAtraso2() {
-		return atraso2.getSuperiorLimitN();
+		return atrasoN2.getSuperiorLimit();
 	}
 	
 	/**
@@ -250,7 +244,7 @@ public class MetricsCollection {
 	 * @return Limite inferior do intervalo de confianca da media da quantidade em espera da fila 2
 	 */
 	public double getInferiorLimitNAtraso2() {
-		return atraso2.getInferiorLimitN();
+		return atrasoN2.getInferiorLimit();
 	}
 	
 	/**
@@ -266,7 +260,7 @@ public class MetricsCollection {
 	 * @return Desvio do intervalo de confiança da quantidade total na fila 1
 	 */
 	public double getDeviationNTotal1() {
-		return total1.getDeviationN();
+		return totalN1.getDeviation();
 	}
 	
 	/**
@@ -282,7 +276,7 @@ public class MetricsCollection {
 	 * @return Desvio do intervalo de confiança da quantidade total na fila 2
 	 */
 	public double getDeviationNTotal2() {
-		return total2.getDeviationN();
+		return totalN2.getDeviation();
 	}
 	
 	/**
@@ -298,7 +292,7 @@ public class MetricsCollection {
 	 * @return Desvio do intervalo de confiança da quantidade em espera na fila 1
 	 */
 	public double getDeviationNAtraso1() {
-		return atraso1.getDeviationN();
+		return atrasoN1.getDeviation();
 	}
 	
 	/**
@@ -314,6 +308,6 @@ public class MetricsCollection {
 	 * @return Desvio do intervalo de confiança da quantidade em espera na fila 2
 	 */
 	public double getDeviationNAtraso2() {
-		return atraso2.getDeviationN();
+		return atrasoN2.getDeviation();
 	}
 }

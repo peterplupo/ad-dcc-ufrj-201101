@@ -25,9 +25,8 @@ public class TestMetrics {
 		values.add(24.0);
 		values.add(26.5);
 		for (Double value : values) {
-			metrics.insertValue(value);
+			metrics.insertValue(value, 100);
 		}
-		metrics.calculateDeviation();
 	}
 	
 	//verificar qual seria um bom epslon
@@ -43,17 +42,19 @@ public class TestMetrics {
 
 	@Test
 	public void testInsertValue() {
-		//fail("Not yet implemented");
+		//ainda nao esta implementada, entao deve falhar
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetSuperLimit(){
+		//está falhando
 		assertEquals(25.889999, metrics.getSuperiorLimit(), 0.000001);
 	}
 	
 	@Test
 	public void testGetInferiorLimit(){
-		System.out.println(metrics.getInferiorLimit());
+		//está falhando
 		assertEquals(15.0, metrics.getInferiorLimit(), 0.000001);
 	}
 }

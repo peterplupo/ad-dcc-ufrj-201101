@@ -61,7 +61,7 @@ public class EventQueue {
 		chegada1.servir(tempo, tempoServico);
 		tempo += tempoServico;
 		if (chegada1.getColor() == color) {
-			metricsCollection.collect(chegada1);
+			metricsCollection.collect(chegada1, getTimeInterval());
 		}
 		chegada1 = new EventClassA(chegada1.getTime() + exponencialChegada.getValue(), color);
 	}
@@ -82,7 +82,7 @@ public class EventQueue {
 		} else {
 			tempo += tempoServico;
 			if (event.getColor() == color) {
-				metricsCollection.collect(event);
+				metricsCollection.collect(event, getTimeInterval());
 			}
 		}
 	}
