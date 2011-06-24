@@ -25,6 +25,13 @@ public class MetricsCollection {
 		atraso2.insertValue(event.getTempoAtraso());
 	}
 	
+	public void clean() {
+		total1.clean();
+		atraso1.clean();
+		total2.clean();
+		atraso2.clean();
+	}
+	
 	public double getMeanTotal1() {
 		return total1.getMean();
 	}

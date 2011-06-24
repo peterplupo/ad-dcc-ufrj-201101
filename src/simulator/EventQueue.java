@@ -12,22 +12,22 @@ public class EventQueue {
 	private EventClassA chegada1;
 	private LinkedList<EventClassB> queue;
 	private int color;
-	private double tempo;
+	private double tempo, stop, interval;
 	private RandomExponentialVariable exponencialServico;
 	private double taxaServico;
 	private MetricsCollection metricsCollection;
 	private double taxaChegada;
 	private RandomExponentialVariable exponencialChegada;
 	
-	public EventQueue(double use) {
-		tempo = 0;
+	public EventQueue(double useRate) {
+		interval = stop = tempo = 0;
 		color = 0;
 		chegada1 = new EventClassA(0, color);
 		queue = new LinkedList<EventClassB>();
 		taxaServico = 1;
 		exponencialServico = new RandomExponentialVariable(taxaServico);
 		metricsCollection = new MetricsCollection();
-		taxaChegada = use / 2;
+		taxaChegada = useRate / 2;
 		exponencialChegada = new RandomExponentialVariable(taxaChegada);
 	}
 	
@@ -88,6 +88,17 @@ public class EventQueue {
 	}
 	
 	public void advanceColor() {
+		metricsCollection.clean();
 		++color;
+		interval = tempo - stop;
+		stop = tempo;
+	}
+	
+	public MetricsCollection getMetricsCollection() {
+		return metricsCollection;
+	}
+	
+	public double getTimeInterval() {
+		return interval;
 	}
 }
