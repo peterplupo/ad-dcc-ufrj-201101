@@ -46,6 +46,8 @@ public class EventQueue {
 		 */
 		EventClassB chegada2 = queue.peekFirst();
 		
+		interval = tempo - stop;
+		
 		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime()) {
 			//trata chegada1
 			processEventClassA();
@@ -88,6 +90,7 @@ public class EventQueue {
 			if (event.getColor() == color) {
 				metricsCollection.collect(event, getTimeInterval());
 			}
+			queue.pop();
 		}
 	}
 	
