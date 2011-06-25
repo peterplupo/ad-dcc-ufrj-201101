@@ -48,13 +48,18 @@ public class EventQueue {
 		
 		interval = tempo - stop;
 
-		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime()) {
+		/*
+		 * Trata a chegada 1 se não houver chegadas 2, se a próxima chegada 1 for antes da próxima chegada 2
+		 * ou se já houver uma chegada 1
+		 */
+		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime() || tempo >= chegada1.getTime()) {
 			//trata chegada1
-			System.out.println("Tratando chegada 1");
+			//System.out.println("Tratando chegada 1");
 			processEventClassA();
 		} else {
 			//trata chegada2
-			System.out.println("Tratando chegada 2");
+			//System.out.println("Tratando chegada 2");
+			//System.out.println("chegada1: " + chegada1.getTime() + "; chegada2: " + chegada2.getTime() + "; tempo: " + tempo);
 			processEventClassB(chegada1.getTime() - tempo);
 		}
 	}
@@ -87,10 +92,10 @@ public class EventQueue {
 		}
 		
 		if (event.hasServico()) {
-			System.out.println("Ainda resta.");
+			//System.out.println("Ainda resta.");
 			tempo += tempoDisponivel;
 		} else {
-			System.out.println("Terminou");
+			//System.out.println("Terminou");
 			tempo += tempoServico;
 			if (event.getColor() == color) {
 				metricsCollection.collect(event, getTimeInterval());
