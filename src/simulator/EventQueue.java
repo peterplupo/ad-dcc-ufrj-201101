@@ -47,12 +47,14 @@ public class EventQueue {
 		EventClassB chegada2 = queue.peekFirst();
 		
 		interval = tempo - stop;
-		
+
 		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime()) {
 			//trata chegada1
+			System.out.println("Tratando chegada 1");
 			processEventClassA();
 		} else {
 			//trata chegada2
+			System.out.println("Tratando chegada 2");
 			processEventClassB(chegada1.getTime() - tempo);
 		}
 	}
@@ -65,16 +67,17 @@ public class EventQueue {
 		}
 		chegada1.servir(tempo, tempoServico);
 		tempo += tempoServico;
-		//System.out.println(tempo + " " + chegada1.getTempoAtraso());
 		if (chegada1.getColor() == color) {
 			metricsCollection.collect(chegada1, getTimeInterval());
 		}
 		chegada1 = new EventClassA(chegada1.getTime() + exponencialChegada.getValue(), color);
+		queue.add(new EventClassB(tempo, color));
 	}
 
 	private void processEventClassB(double tempoDisponivel) {
 		EventClassB event = queue.peekFirst();
 		double tempoServico;
+		
 		if (event.hasServico()) {
 			tempoServico = event.getTempoRestante();
 			event.continuarServico(tempo, tempoDisponivel);
@@ -84,8 +87,10 @@ public class EventQueue {
 		}
 		
 		if (event.hasServico()) {
+			System.out.println("Ainda resta.");
 			tempo += tempoDisponivel;
 		} else {
+			System.out.println("Terminou");
 			tempo += tempoServico;
 			if (event.getColor() == color) {
 				metricsCollection.collect(event, getTimeInterval());
