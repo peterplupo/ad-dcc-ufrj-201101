@@ -16,7 +16,7 @@ public class TextControl {
 		SimulationManager simulationManager = new SimulationManager(0);
 		MetricsAgregator metricsAgregator;
 		
-		System.out.println("Iniciando teste com ro = 0.2.");
+		System.out.println("Iniciando teste com ro = " + ro + ".");
 		simulationManager.runSimulation(ro);
 		metricsAgregator = simulationManager.getMetricsAgregator();
 		

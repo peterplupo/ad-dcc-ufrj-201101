@@ -35,6 +35,7 @@ public class EventClassB extends Event {
 	
 	public void continuarServico(double tempo, double tempoDisponivel) {
 		tempoAtraso += tempo - parada;
+		//System.out.println("Resta: " + tempoRestante + "; temos: " + tempoDisponivel);
 		if (tempoDisponivel >= tempoRestante) {
 			servico = false;
 			tempoRestante = 0;
