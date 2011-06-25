@@ -83,6 +83,7 @@ public class SimulationManager {
 				|| metricsCollection.getDeviationNTotal2() > tolerance
 				|| metricsCollection.getDeviationNAtraso1() > tolerance
 				|| metricsCollection.getDeviationNAtraso2() > tolerance) {
+			
 			System.out.println(metricsCollection.getDeviationTotal1());
 			System.out.println(metricsCollection.getDeviationTotal2());
 			System.out.println(metricsCollection.getDeviationNTotal1());
@@ -91,6 +92,7 @@ public class SimulationManager {
 			System.out.println(metricsCollection.getDeviationAtraso2());
 			System.out.println(metricsCollection.getDeviationNAtraso1());
 			System.out.println(metricsCollection.getDeviationNAtraso2());
+			
 			eventQueue.processNextEvent();
 			++i;
 		}
