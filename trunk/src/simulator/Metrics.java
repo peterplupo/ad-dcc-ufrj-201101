@@ -29,7 +29,11 @@ public class Metrics {
 	 * @return a media
 	 */
 	public double getMean() {
-		return sum / count;
+		if (count == 0) {
+			return 0;
+		} else {
+			return sum / count;
+		}
 	}
 	
 	/**
@@ -37,8 +41,12 @@ public class Metrics {
 	 * @return a variancia
 	 */
 	public double getVariance() {
-		double nMenosUm = count - 1;
-		return sumOfSquares / nMenosUm - sum*sum/(count*nMenosUm);
+		if (count == 0) {
+			return 0;
+		} else {
+			double nMenosUm = count - 1;
+			return sumOfSquares / nMenosUm - sum*sum/(count*nMenosUm);
+		}
 	}
 	
 	/**
@@ -89,7 +97,11 @@ public class Metrics {
 	 * @return
 	 */
 	public double getMeanN() {
-		return sum / timeInterval;
+		if (timeInterval == 0) {
+			return 0;
+		} else {
+			return sum / timeInterval;
+		}
 	}
 	
 	/**

@@ -72,7 +72,6 @@ public class SimulationManager {
 		// TODO aqui verificamos se devemos trocar de fase
 		int i;
 		for (i = 0; i < minEvents; ++i) {
-			System.out.println("Processando evento " + i);
 			eventQueue.processNextEvent();
 		}
 		// TODO aqui verificamos se deve avançar a fase
@@ -84,7 +83,6 @@ public class SimulationManager {
 				|| metricsCollection.getDeviationNTotal2() > tolerance
 				|| metricsCollection.getDeviationNAtraso1() > tolerance
 				|| metricsCollection.getDeviationNAtraso2() > tolerance) {
-			System.out.println("Processando evento " + i + ": " + metricsCollection.getDeviationTotal1());
 			System.out.println(metricsCollection.getDeviationTotal1());
 			System.out.println(metricsCollection.getDeviationTotal2());
 			System.out.println(metricsCollection.getDeviationNTotal1());

@@ -21,6 +21,8 @@ public class TextControl {
 		System.out.println("E[Nq1] = " + metricsAgregator.getMeanNAtraso1() + " +- " + metricsAgregator.getDeviationNAtraso1());
 		System.out.println("E[T2] = " + metricsAgregator.getMeanTotal1() + " +- " + metricsAgregator.getDeviationTotal2());
 		System.out.println("E[W2] = " + metricsAgregator.getMeanAtraso1() + " +- " + metricsAgregator.getDeviationAtraso2());
+		System.out.println("E[N2] = " + metricsAgregator.getMeanNFila2() + " +- " + metricsAgregator.getDeviationNTotal2());
+		System.out.println("E[Nq2] = " + metricsAgregator.getMeanNAtraso2() + " +- " + metricsAgregator.getDeviationNAtraso2());
 		System.out.println("V(W1) = " + metricsAgregator.getVarianceAtraso1());
 		System.out.println("V(W2) = " + metricsAgregator.getVarianceAtraso2());
 	}
