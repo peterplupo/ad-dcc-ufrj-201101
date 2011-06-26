@@ -1,5 +1,7 @@
 package simulator;
 
+import java.util.Random;
+
 /**
  * Classe para testar em console o funcionamento do Simulador
  * @author daniel
@@ -18,7 +20,8 @@ public class TextControl {
 	}
 	
 	private static void testRun(double ro) {
-		SimulationManager simulationManager = new SimulationManager(0);
+		Random seed = new Random();
+		SimulationManager simulationManager = new SimulationManager(seed.nextInt());
 		MetricsAgregator metricsAgregator;
 		
 		System.out.println("Iniciando teste com ro = " + ro + ".");
