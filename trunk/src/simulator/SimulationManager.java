@@ -25,7 +25,7 @@ public class SimulationManager {
 		// TODO definir um total aceitável
 		minFases = 20;
 		minEvents = 100;
-		eventsTransient = 10000000;
+		eventsTransient = 1000000;
 		tolerance = 0.1;
 		SimulationManager.seed = seed;
 		metricsAgregator = new MetricsAgregator();
