@@ -27,7 +27,7 @@ public class SimulationManager {
 		minEvents = 100;
 		eventsTransient = 10000000;
 		tolerance = 0.1;
-		this.seed = seed;
+		SimulationManager.seed = seed;
 		metricsAgregator = new MetricsAgregator();
 	}
 	
