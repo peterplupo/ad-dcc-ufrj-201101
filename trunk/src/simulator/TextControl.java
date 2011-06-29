@@ -28,6 +28,7 @@ public class TextControl {
 		simulationManager.runSimulation(ro);
 		metricsAgregator = simulationManager.getMetricsAgregator();
 		
+		System.out.println("Total de eventos processados: " + simulationManager.getTotalRodadas());
 		System.out.println("Resultados:");
 		System.out.println("E[T1] = " + metricsAgregator.getMeanTotal1() + " +- " + metricsAgregator.getDeviationTotal1());
 		System.out.println("E[W1] = " + metricsAgregator.getMeanAtraso1() + " +- " + metricsAgregator.getDeviationAtraso1());
