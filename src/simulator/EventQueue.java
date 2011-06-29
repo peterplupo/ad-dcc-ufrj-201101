@@ -83,6 +83,10 @@ public class EventQueue {
 		EventClassB event = queue.peekFirst();
 		double tempoServico;
 		
+		if (tempo < event.getTime()) {
+			tempo = event.getTime();
+		}
+		
 		if (event.hasServico()) {
 			tempoServico = event.getTempoRestante();
 			event.continuarServico(tempo, tempoDisponivel);
