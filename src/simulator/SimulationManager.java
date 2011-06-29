@@ -22,6 +22,10 @@ public class SimulationManager {
 		return seed;
 	}
 	
+	/**
+	 * Possui o total de rodadas realizadas ate o momento atual
+	 * @return
+	 */
 	public int getTotalRodadas() {
 		return totalRodadas;
 	}
@@ -32,88 +36,95 @@ public class SimulationManager {
 		minEvents = 100;
 		eventsTransient = 100000;
 		totalRodadas = 0;
-		tolerance = 0.01;
+		tolerance = 0.05;
 		SimulationManager.seed = seed;
 		metricsAgregator = new MetricsAgregator();
 	}
 	
+	/**
+	 * Avalia se os valores coletados tem intervalos de confianca dentro da tolerancia
+	 * @return
+	 */
+	private boolean outsideTolerance() {
+		boolean w1 = metricsAgregator.getDeviationAtraso1() > tolerance * metricsAgregator.getMeanAtraso1();
+		boolean w2 = metricsAgregator.getDeviationAtraso2() > tolerance * metricsAgregator.getMeanAtraso2();
+		boolean t1 = metricsAgregator.getDeviationTotal1() > tolerance * metricsAgregator.getMeanTotal1();
+		boolean t2 = metricsAgregator.getDeviationTotal2() > tolerance * metricsAgregator.getMeanTotal2();
+		boolean n1 = metricsAgregator.getDeviationNTotal1() > tolerance * metricsAgregator.getMeanNFila1();
+		boolean n2 = metricsAgregator.getDeviationNTotal2() > tolerance * metricsAgregator.getMeanNFila2();
+		boolean nq1 = metricsAgregator.getDeviationNAtraso1() > tolerance * metricsAgregator.getMeanNAtraso1();
+		boolean nq2 = metricsAgregator.getDeviationNAtraso2() > tolerance * metricsAgregator.getMeanNAtraso2();
+		
+		return w1 || w2 || t1 || t2 || n1 || n2 || nq1 || nq2;
+	}
+	
+	/**
+	 * Mínimo de rodadas da simulacao
+	 * @param minFases
+	 */
 	public void setMinFases(int minFases) {
 		this.minFases = minFases;
 	}
 	
+	/**
+	 * Define o minimo de eventos de uma rodada
+	 * @param minEvents
+	 */
 	public void setMinEvents(int minEvents) {
 		this.minEvents = minEvents;
 	}
 	
+	/**
+	 * Define o mínimo de eventos da fase transiente
+	 * @param eventsTransient
+	 */
 	public void setEventsTransient(int eventsTransient) {
 		this.eventsTransient = eventsTransient;
 	}
 	
+	/**
+	 * Roda varias rodadas da simulacao para poder obter os valores 
+	 * @param useRate
+	 */
 	public void runSimulation(double useRate) {
 		EventQueue eventQueue = new EventQueue(useRate);
 		metricsCollection = eventQueue.getMetricsCollection();
 		
-		//System.out.println("Iniciando fase transiente.");
-		// TODO aqui devemos verificar se ainda está na fase transiente
+		// aqui devemos verificar se ainda está na fase transiente
 		for (int i = 0; i < eventsTransient; ++i) {
 			eventQueue.processNextEvent();
 			++totalRodadas;
 		}
 		metricsAgregator.clean();
-		//System.out.println("Fim da fase transiente.");
 
-		//System.out.println("Iniciando rodadas coloridas");
 		int i;
 		for (i = 0; i < minFases; i++) {
-			//System.out.println("Rodada " + i);
 			runOne(eventQueue);
-			// TODO aqui devemos acumular os resultados para composição
+			// aqui devemos acumular os resultados para composição
 			metricsAgregator.collect(metricsCollection);
 		}
-		while (metricsAgregator.getDeviationAtraso1() > tolerance
-				|| metricsAgregator.getDeviationAtraso2() > tolerance
-				|| metricsAgregator.getDeviationTotal1() > tolerance
-				|| metricsAgregator.getDeviationTotal2() > tolerance
-				|| metricsAgregator.getDeviationNTotal1() > tolerance
-				|| metricsAgregator.getDeviationNTotal2() > tolerance
-				|| metricsAgregator.getDeviationNAtraso1() > tolerance
-				|| metricsAgregator.getDeviationNAtraso2() > tolerance) {
-			//System.out.println("Rodada " + i);
+		while (outsideTolerance()) {
 			runOne(eventQueue);
-			// TODO aqui devemos acumular os resultados para composição
+			// aqui devemos acumular os resultados para composição
 			metricsAgregator.collect(metricsCollection);
 			++i;
 		}
 	}
 	
+	/**
+	 * Uma rodada de simulacao
+	 * @param eventQueue
+	 */
 	private void runOne(EventQueue eventQueue) {
 		
-		// TODO aqui verificamos se devemos trocar de fase
+		// aqui verificamos se devemos trocar de fase
 		int i;
 		for (i = 0; i < minEvents; ++i) {
 			eventQueue.processNextEvent();
 			++totalRodadas;
 		}
-		// TODO aqui verificamos se deve avançar a fase
-		while (metricsCollection.getDeviationAtraso1() > tolerance
-				|| metricsCollection.getDeviationAtraso2() > tolerance
-				|| metricsCollection.getDeviationTotal1() > tolerance
-				|| metricsCollection.getDeviationTotal2() > tolerance
-				|| metricsCollection.getDeviationNTotal1() > tolerance
-				|| metricsCollection.getDeviationNTotal2() > tolerance
-				|| metricsCollection.getDeviationNAtraso1() > tolerance
-				|| metricsCollection.getDeviationNAtraso2() > tolerance) {
-			/*
-			System.out.println(metricsCollection.getDeviationTotal1());
-			System.out.println(metricsCollection.getDeviationTotal2());
-			System.out.println(metricsCollection.getDeviationNTotal1());
-			System.out.println(metricsCollection.getDeviationNTotal2());
-			System.out.println(metricsCollection.getDeviationAtraso1());
-			System.out.println(metricsCollection.getDeviationAtraso2());
-			System.out.println(metricsCollection.getDeviationNAtraso1());
-			System.out.println(metricsCollection.getDeviationNAtraso2());
-			*/
-			
+		// aqui verificamos se deve avançar a fase
+		while (outsideTolerance()) {
 			eventQueue.processNextEvent();
 			++i;
 			++totalRodadas;
