@@ -1,7 +1,7 @@
 package simulator;
 
 /**
- * Classe para controle geral da simulação
+ * Classe para controle geral da simulacao
  * @author dalves
  *
  */
@@ -31,7 +31,7 @@ public class SimulationManager {
 	}
 	
 	public SimulationManager(int seed) {
-		// TODO definir um total aceitável
+		// TODO definir um total aceitavel
 		minFases = 20;
 		minEvents = 100;
 		eventsTransient = 100000;
@@ -59,7 +59,7 @@ public class SimulationManager {
 	}
 	
 	/**
-	 * Mínimo de rodadas da simulacao
+	 * Minimo de rodadas da simulacao
 	 * @param minFases
 	 */
 	public void setMinFases(int minFases) {
@@ -75,7 +75,7 @@ public class SimulationManager {
 	}
 	
 	/**
-	 * Define o mínimo de eventos da fase transiente
+	 * Define o minimo de eventos da fase transiente
 	 * @param eventsTransient
 	 */
 	public void setEventsTransient(int eventsTransient) {
@@ -90,7 +90,7 @@ public class SimulationManager {
 		EventQueue eventQueue = new EventQueue(useRate);
 		metricsCollection = eventQueue.getMetricsCollection();
 		
-		// aqui devemos verificar se ainda está na fase transiente
+		// aqui devemos verificar se ainda esta na fase transiente
 		for (int i = 0; i < eventsTransient; ++i) {
 			eventQueue.processNextEvent();
 			++totalRodadas;
@@ -100,12 +100,12 @@ public class SimulationManager {
 		int i;
 		for (i = 0; i < minFases; i++) {
 			runOne(eventQueue);
-			// aqui devemos acumular os resultados para composição
+			// aqui devemos acumular os resultados para composicao
 			metricsAgregator.collect(metricsCollection);
 		}
 		while (outsideTolerance()) {
 			runOne(eventQueue);
-			// aqui devemos acumular os resultados para composição
+			// aqui devemos acumular os resultados para composicao
 			metricsAgregator.collect(metricsCollection);
 			++i;
 		}
@@ -123,7 +123,7 @@ public class SimulationManager {
 			eventQueue.processNextEvent();
 			++totalRodadas;
 		}
-		// aqui verificamos se deve avançar a fase
+		// aqui verificamos se deve avancar a fase
 		while (outsideTolerance()) {
 			eventQueue.processNextEvent();
 			++i;

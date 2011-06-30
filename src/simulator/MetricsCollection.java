@@ -16,7 +16,7 @@ public class MetricsCollection {
 	}
 	
 	/**
-	 * Coleta os dados de um EventClassA, considerando até o momento um intervalo de tempo total timeInterval
+	 * Coleta os dados de um EventClassA, considerando ate o momento um intervalo de tempo total timeInterval
 	 * @param event
 	 * @param timeInterval
 	 */
@@ -26,7 +26,7 @@ public class MetricsCollection {
 	}
 	
 	/**
-	 * Coleta os dados de um EventClassB, considerando até o momento um intervalo de tempo total timeInterval
+	 * Coleta os dados de um EventClassB, considerando ate o momento um intervalo de tempo total timeInterval
 	 * @param event
 	 * @param timeInterval
 	 */
@@ -255,7 +255,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo total na fila 1
+	 * @return Desvio do intervalo de confianca do tempo total na fila 1
 	 */
 	public double getDeviationTotal1() {
 		return total1.getDeviation();
@@ -263,7 +263,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade total na fila 1
+	 * @return Desvio do intervalo de confianca da quantidade total na fila 1
 	 */
 	public double getDeviationNTotal1() {
 		return total1.getDeviationN();
@@ -271,7 +271,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo total na fila 2
+	 * @return Desvio do intervalo de confianca do tempo total na fila 2
 	 */
 	public double getDeviationTotal2() {
 		return total2.getDeviation();
@@ -279,7 +279,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade total na fila 2
+	 * @return Desvio do intervalo de confianca da quantidade total na fila 2
 	 */
 	public double getDeviationNTotal2() {
 		return total2.getDeviationN();
@@ -287,7 +287,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo em espera na fila 1
+	 * @return Desvio do intervalo de confianca do tempo em espera na fila 1
 	 */
 	public double getDeviationAtraso1() {
 		return atraso1.getDeviation();
@@ -295,7 +295,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade em espera na fila 1
+	 * @return Desvio do intervalo de confianca da quantidade em espera na fila 1
 	 */
 	public double getDeviationNAtraso1() {
 		return atraso1.getDeviationN();
@@ -303,7 +303,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo em espera na fila 2
+	 * @return Desvio do intervalo de confianca do tempo em espera na fila 2
 	 */
 	public double getDeviationAtraso2() {
 		return atraso2.getDeviation();
@@ -311,7 +311,7 @@ public class MetricsCollection {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade em espera na fila 2
+	 * @return Desvio do intervalo de confianca da quantidade em espera na fila 2
 	 */
 	public double getDeviationNAtraso2() {
 		return atraso2.getDeviationN();

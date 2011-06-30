@@ -137,24 +137,24 @@ public class EventQueue {
 	
 	/**
 	 * Metodo para processar o proximo evento,
-	 * realizando as operações necessárias na fila
-	 * e capturando as métricas
+	 * realizando as operacoes necessarias na fila
+	 * e capturando as metricas
 	 */
 	public void processNextEvent() {
 		/*
 		 * logica implementada:
 		 * verifica quando ocorre a proxima chegada1
 		 * verifica quando ocorre a proxima chegada2
-		 * Se a chegada1 for primeiro (ou não há chegada2 na fila), trata-a e avança o relogio
-		 * senão, verifica quanto tempo ha disponivel ate a proxima chegada1 e trata o quanto puder a 2
+		 * Se a chegada1 for primeiro (ou nao ha chegada2 na fila), trata-a e avanca o relogio
+		 * senao, verifica quanto tempo ha disponivel ate a proxima chegada1 e trata o quanto puder a 2
 		 */
 		EventClassB chegada2 = queue.peekFirst();
 		
 		interval = tempo - stop;
 
 		/*
-		 * Trata a chegada 1 se não houver chegadas 2, se a próxima chegada 1 for antes da próxima chegada 2
-		 * ou se já houver uma chegada 1
+		 * Trata a chegada 1 se nao houver chegadas 2, se a proxima chegada 1 for antes da proxima chegada 2
+		 * ou se ja houver uma chegada 1
 		 */
 		if (queue.isEmpty() || chegada1.getTime() <= chegada2.getTime() || tempo >= chegada1.getTime()) {
 			//trata chegada1

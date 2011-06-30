@@ -10,7 +10,7 @@ public class Metrics {
 	private double sumOfSquares;
 	private int count;
 	private double t = 1.96; //t-student para acerto de 95%
-	private double deviation, deviationN; //desvio do tempo e do nº de pessoas na fila
+	private double deviation, deviationN; //desvio do tempo e do numero de pessoas na fila
 	private double timeInterval;
 	
 	/** 
@@ -63,7 +63,7 @@ public class Metrics {
 	}
 	
 	/**
-	 * Calcula o módulo do desvio da amostra
+	 * Calcula o modulo do desvio da amostra
 	 */
 	private void calculateDeviation(){
 		if (count == 0) {
@@ -116,7 +116,7 @@ public class Metrics {
 	}
 	
 	/**
-	 * Calcula o módulo do desvio da amostra na fila
+	 * Calcula o modulo do desvio da amostra na fila
 	 * Requer que o intervalo total de tempo tenha sido definido
 	 */
 	public void calculateDeviationN(){

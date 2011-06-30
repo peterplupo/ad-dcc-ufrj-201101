@@ -39,21 +39,21 @@ public class SimulatorView extends JFrame implements ActionListener,
 
 	private void initComponents() {
 
-		startLabel = new JLabel("Clique para começar a simulação:");
+		startLabel = new JLabel("Clique para comecar a simulacao:");
 
-		startButton = new JButton("Começar");
+		startButton = new JButton("Comecar");
 		startButton.addActionListener(this);
 
 		startPanel = new JPanel();
 		startPanel.add(startLabel);
 		startPanel.add(startButton);
 
-		String cols[] = { "Métricas", "Fila 1", "+/-", "Fila 2", "+/-" };
+		String cols[] = { "Metricas", "Fila 1", "+/-", "Fila 2", "+/-" };
 		String lines[][] = { { "Tempo Total - E[T]", "", "", "", "" },
 				{ "Tempo de Espera - E[W]", "", "", "", "" },
-				{ "Número Total - E[N]", "", "", "", "" },
-				{ "Número em Espera - E[Nq]", "", "", "", "" },
-				{ "Variacia da Espera - V[W]", "", "-", "", "-" } };
+				{ "Numero Total - E[N]", "", "", "", "" },
+				{ "Numero em Espera - E[Nq]", "", "", "", "" },
+				{ "Variancia da Espera - V[W]", "", "-", "", "-" } };
 
 		DefaultTableModel model = new DefaultTableModel(lines, cols);
 		tableResult = new JTable(model);
@@ -65,7 +65,7 @@ public class SimulatorView extends JFrame implements ActionListener,
 		panelTable = new JPanel();
 		panelTable.add(pane);
 
-		statusMsg = new JLabel("Aguardando Inicío da execução...");
+		statusMsg = new JLabel("Aguardando inicio da execucao...");
 
 		statusPanel = new JPanel(new BorderLayout());
 		statusPanel.setBorder(new TitledBorder("Status"));
@@ -89,7 +89,7 @@ public class SimulatorView extends JFrame implements ActionListener,
 		// TODO Auto-generated method stub
 		//
 
-		if (e.getActionCommand().equals("Começar")) {
+		if (e.getActionCommand().equals("Comecar")) {
 			SimulationManager simulationManager = new SimulationManager(0);
 			MetricsAgregator metricsAgregator;
 
