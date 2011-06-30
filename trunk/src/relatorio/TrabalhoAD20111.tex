@@ -58,22 +58,40 @@
 \chapter{Introdução}
 
 \section{Funcionamento Geral do Simulador}
-O fluxo de execução do simulador é descrito, a seguir, em linhas gerais.\\
-- As estruturas internas são inicializadas e o evento inicial é gerado\\
-- Aguarde-se a execução da fase transiente\\
-- O loop principal de rodadas é iniciado. Para cada rodada:\\
-- Se o critério de parada for satistfeito (todos os ICs são suficientemente pequenos), pare\\
-- A coleta de amostras da rodada é reiniciada\\
-- “n = eventos por rodada” eventos são retirados da fila de eventos e processados\\
-- Se não for a fase transiente, as médias da rodada são calculadas e adicionadas às listas de médias globais.\\
-Os resultados encontrados são impressos no terminal.\\
-A execução de cada evento é descrita com detalhes na seção que trata dos tipos de eventos.\\
-Mais detalhes sobre o funcionamento do simulador estão no workflow do Anexo %número do anexo%
+O fluxo de execução do simulador é descrito, a seguir, em linhas gerais.
+\begin{itemize}
+  \item As estruturas internas são inicializadas e o evento inicial é gerado.
+  \item Aguarda-se a execução da fase transiente.
+  \item O loop principal de rodadas é iniciado. Para cada rodada:
+  \begin{itemize}
+    \item Se o critério de parada for satistfeito (todos os ICs são suficientemente pequenos), pare.
+    \item A coleta de amostras da rodada é reiniciada.
+    \item “n = eventos por rodada” eventos são retirados da fila de eventos e processados.
+    \item Se não for a fase transiente, as médias da rodada são calculadas e adicionadas às listas de médias globais.
+\end{itemize}
+  \item Os resultados encontrados são impressos no terminal.
+\end{itemize}
+
+A execução de cada evento é descrita com detalhes na seção que trata dos tipos de eventos.
+
+Mais detalhes sobre o funcionamento do simulador estão no workflow do Anexo %número do anexo
 
 \section{Eventos Escolhidos}
 Os eventos utilizados são as chegadas nas filas, e cada fila possui um evento de chegada correspondente.
 
 \section{Estruturas Internas Utilizadas}
+Nosso código utiliza as estruturas a seguir.
+\begin{itemize}
+  \item Um objeto para representa a próxima chegada na primeira fila.
+  \item Uma lista para armazenar as chegadas ainda não foram servidas na segunda fila.
+\end{itemize}
+Também vale destacar que temos mais de uma classe para armazenas as estatísticas coletadas:
+%Faltam os nomes das classes
+\begin{itemize}
+  \item \textit{Metrics} - coleta das estatísticas por tipo;
+  \item \textit{MetricsCollection} - reúne as estatísticas de xxx por rodada;
+  \item \textit{MetricsAgregator} - agrega os valores obtidos por cada rodada.
+\end{itemize}
 
 \section{Geração das Variáveis Aleatórias (VA)}
 
