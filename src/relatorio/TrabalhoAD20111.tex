@@ -86,8 +86,10 @@ Nosso código utiliza as estruturas a seguir.
   \item Um objeto para representa a próxima chegada na primeira fila.
   \item Uma lista para armazenar as chegadas ainda não foram servidas na segunda fila.
 \end{itemize}
+
+Não houve necessidade de usarmos uma fila de prioridades, pois os eventos já são inseridos ordenados por tempo.
+
 Também vale destacar que temos mais de uma classe para armazenas as estatísticas coletadas:
-%Faltam os nomes das classes
 \begin{itemize}
   \item \textit{Metrics} - coleta das estatísticas por tipo;
   \item \textit{MetricsCollection} - reúne as estatísticas de xxx por rodada;
@@ -95,19 +97,32 @@ Também vale destacar que temos mais de uma classe para armazenas as estatístic
 \end{itemize}
 
 \section{Geração das Variáveis Aleatórias (VA)}
+O Java possui classes prontas para fornecer números aleatórios, dentre as quais utilizamos \textit{Random} para obter números pseudo-aleatórios, entre 0 e 1, do tipo \textit{double}. Já a geração de VAs Exponenciais teve de ser implementada, papel da classe \textit{RandomExponentialVariable}. O cálculo do IC exigiu apenas um valor fixo da distribuição t-Student: o percentil \textit{$t_{0,975}$ = 1, 960}. Este valor foi armazenado na variável \textit{t}, da classe \textit{Metrics}. Outras distribuições não foram necessárias.
+
+O método escolhido para geração das rodadas foi o \textit{Batch}, principalmente por ser necessária a realização de somente uma fase transiente, colaborando para a diminuição do tempo execução do simulador. A semente foi escolhida aleatoriamente e mantida ao longo de cada cenário.
 
 \section{Linguagem}
+A linguagem escolhida foi \textit{Java 1.6}, devido à sua portabilidade e facilidade de uso. Os gráficos foram desenhados com a ferramente \textit{GNUPlot}. Ambos estão disponíveis para Linux e Windows.
 
 \section{Escolha de Parâmetros}
+O tamanho da fase transiente foi determinado empiricamente, testando-se diversos valores. Uma fase transiente inadequada era indicada pela ocorrência de ICs crescentes ao longo da simulação. Desta forma, aumentamos gradualmente o valor de seu tamanho até que os resultados fossem satisfatórios.
+
+As tabelas com os resultados pertinentes estão ...%%%%%.
 
 \section{Especificação da Máquina}
+O computador usado para os testes documentados tem sistema operacional Arch Linux, processador Intel i5 e 4GB de memória RAM. Fizemos, também, um breve teste num PC com Windows XP, apenas para certificar que o simulador também era executável nesta plataforma.
 
 \section{Informações Adicionais}
+Para rodar o simulador em ambiente linux, basta digitar a seguinte linha de comando:
+java -jar simulador.jar
+
+Os parâmetros de simulação podem ser alterados no próprio código, na classe \textit{TextControl}.
 
 %%%%%%%%%%%%%
 % Testes
 %%%%%%%%%%%%%
 \chapter{Testes de Correção}
+
 
 %%%%%%%%%%%%%
 % Fase transiente
