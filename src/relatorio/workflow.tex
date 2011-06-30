@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8x]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{epstopdf}
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{tikz}
+\usepackage{indentfirst}
+\hyphenation{li-vro tes-te cha-ve bi-blio-te-ca}
+\hyphenation{co-men-t-rio re-fe-rn-cia}
+\usetikzlibrary{positioning,shapes,shadows,arrows}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\linespread{1.5}
+\pagestyle{plain}
+
+
+\begin{document}
+
+\tikzstyle{decision} = [diamond, draw, fill=green!20, text width=4em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=5cm, minimum height=2em]
+\tikzstyle{start} = [draw, circle, fill=black, node distance5em, minimum height=1em]
+    
+\begin{tikzpicture}[node distance = 3cm, auto]
+    % Place nodes
+    \node [cloud] (init) {início};
+    \node [block, right of=init] (seed) {seleciona semente};
+    \node [block, right of=seed] (processtrans) {fase transiente};
+    \node [block, below of=processtrans] (processrod) {processa m eventos};
+    \node [block, left of=processrod] (colectdata) {coleta estatisticas};
+    \node [decision, below of=colectdata] (decideic) {tamanho mínimo de IC?};
+	\node [block, left of=decideic, node distance=5cm] (processextra) {processa outro evento};
+    \node [block, below of=decideic, node distance=4cm] (groupdata) {agrupa os dados das rodadas};
+	\node [decision, below of=groupdata] (minrodadas) {nº mim de rodadas?};
+    \node [block, below of=minrodadas] (estatgeral) {obtem estatísticas gerais};
+    \node [decision, right of=estatgeral, node distance=4.5cm] (decideicgeral) {achou IC?};
+    \node [cloud, right of=decideicgeral, node distance=3cm] (stop) {fim};
+    % Draw edges
+    \path [line] (init) -- (seed);
+    \path [line] (seed) -- (processtrans);
+    \path [line] (processtrans) -- (processrod);
+    \path [line] (processrod) -- (colectdata);
+    \path [line] (colectdata) -- (decideic);
+    \path [line] (decideic) -- node {não} (processextra);
+    \path [line] (decideic) -- node {sim} (groupdata);
+	\path [line] (processextra) |- (colectdata);
+    \path [line] (groupdata) -- (minrodadas);
+	\path [line] (minrodadas) -| node {não} (processrod);
+	\path [line] (minrodadas) -- node {sim} (estatgeral);
+    \path [line] (estatgeral) -- (decideicgeral);
+    \path [line] (decideicgeral) |- node {não} (processrod);
+    \path [line] (decideicgeral) -- node {sim} (stop);
+\end{tikzpicture}
+
+\end{document}          
