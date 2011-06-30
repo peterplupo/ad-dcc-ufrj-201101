@@ -17,7 +17,7 @@
 \author{Bruno Lima Cardoso - 108055733 \\
   Daniel Santos Ferreira Alves - 107362161 \\
   Mariam dos Passos Afonso da Conceição - 104034913 \\
-\\
+  Peter Peret Lupo - 101137720 \\
 \\
 \\
 \\
@@ -51,7 +51,7 @@ implementação do código, testes e produção do relatório.
 \chapter*{Siglas}
 \begin{list}{$\bullet$}{}
   \item[VA] - Variável Aleatória
-  \item[]
+  \item[IC] - Intervalo de Confiança
 \end{list}
 
 \chapter*{Lista de Variáveis}
@@ -81,11 +81,20 @@ implementação do código, testes e produção do relatório.
 \chapter{Introdução}
 
 \section{Funcionamento Geral do Simulador}
-Testando texto.
-
-Segunda linha.
+O fluxo de execução do simulador é descrito, a seguir, em linhas gerais.\\
+- As estruturas internas são inicializadas e o evento inicial é gerado\\
+- Aguarde-se a execução da fase transiente\\
+- O loop principal de rodadas é iniciado. Para cada rodada:\\
+- Se o critério de parada for satistfeito (todos os ICs são suficientemente pequenos), pare\\
+- A coleta de amostras da rodada é reiniciada\\
+- “n = eventos por rodada” eventos são retirados da fila de eventos e processados\\
+- Se não for a fase transiente, as médias da rodada são calculadas e adicionadas às listas de médias globais.\\
+Os resultados encontrados são impressos no terminal.\\
+A execução de cada evento é descrita com detalhes na seção que trata dos tipos de eventos.\\
+Mais detalhes sobre o funcionamento do simulador estão no workflow do Anexo %número do anexo%
 
 \section{Eventos Escolhidos}
+Os eventos utilizados são as chegadas nas filas, e cada fila possui um evento de chegada correspondente.
 
 \section{Estruturas Internas Utilizadas}
 
