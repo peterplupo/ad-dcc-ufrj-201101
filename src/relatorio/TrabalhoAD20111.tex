@@ -176,8 +176,10 @@ Também vale destacar que temos mais de uma classe para armazenas as estatístic
     \node [block, below of=processtrans] (processrod) {processa m eventos};
     \node [block, left of=processrod] (colectdata) {coleta estatisticas};
     \node [decision, below of=colectdata] (decideic) {tamanho mínimo de IC?};
+	\node [block, left of=decideic, node distance=5cm] (processextra) {processa outro evento};
     \node [block, below of=decideic, node distance=4cm] (groupdata) {agrupa os dados das rodadas};
-    \node [block, below of=groupdata] (estatgeral) {obtem estatísticas gerais};
+	\node [block, below of=groupdata] (minrodadas) {Cumpriu o mínimo de rodadas?};
+    \node [block, below of=minrodadas] (estatgeral) {obtem estatísticas gerais};
     \node [decision, right of=estatgeral, node distance=4.5cm] (decideicgeral) {achou IC?};
     \node [cloud, right of=decideicgeral, node distance=3cm] (stop) {fim};
     % Draw edges
@@ -186,9 +188,12 @@ Também vale destacar que temos mais de uma classe para armazenas as estatístic
     \path [line] (processtrans) -- (processrod);
     \path [line] (processrod) -- (colectdata);
     \path [line] (colectdata) -- (decideic);
-    \path [line] (decideic) -| node {não} (processrod);
+    \path [line] (decideic) -- node {não} (processextra);
     \path [line] (decideic) -- node {sim} (groupdata);
-    \path [line] (groupdata) -- (estatgeral);
+	\path [line] (processextra) |- (colectdata);
+    \path [line] (groupdata) -- (minrodadas);
+	\path [line] (minrodadas) -| node {não} (processrod);
+	\path [line] (minrodadas) -- node {sim} (estatgeral);
     \path [line] (estatgeral) -- (decideicgeral);
     \path [line] (decideicgeral) |- node {não} (processrod);
     \path [line] (decideicgeral) -- node {sim} (stop);
