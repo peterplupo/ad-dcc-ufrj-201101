@@ -1,5 +1,10 @@
 package simulator;
 
+/**
+ * Usado para agregar os resultados obtidos por MetricsCollection, isto e, os resultados de uma rodad
+ * @author daniel
+ *
+ */
 public class MetricsAgregator {
 	Metrics total1, total2, atraso1, atraso2;
 	Metrics totalN1, totalN2, atrasoN1, atrasoN2;
@@ -15,7 +20,11 @@ public class MetricsAgregator {
 		atrasoN1 = new Metrics();
 		atrasoN2 = new Metrics();
 	}
-
+	
+	/**
+	 * Coleta os resultados obtidos por uma rodada
+	 * @param metricsCollection
+	 */
 	public void collect(MetricsCollection metricsCollection) {
 		total1.insertValue(metricsCollection.getMeanTotal1(), 0);
 		total2.insertValue(metricsCollection.getMeanTotal2(), 0);
