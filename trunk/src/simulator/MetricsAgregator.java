@@ -1,7 +1,7 @@
 package simulator;
 
 /**
- * Usado para agregar os resultados obtidos por MetricsCollection, isto e, os resultados de uma rodad
+ * Usado para agregar os resultados obtidos por MetricsCollection, isto e, os resultados de uma rodada
  * @author daniel
  *
  */
@@ -258,7 +258,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo total na fila 1
+	 * @return Desvio do intervalo de confianca do tempo total na fila 1
 	 */
 	public double getDeviationTotal1() {
 		return total1.getDeviation();
@@ -266,7 +266,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade total na fila 1
+	 * @return Desvio do intervalo de confianca da quantidade total na fila 1
 	 */
 	public double getDeviationNTotal1() {
 		return totalN1.getDeviation();
@@ -274,7 +274,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo total na fila 2
+	 * @return Desvio do intervalo de confianca do tempo total na fila 2
 	 */
 	public double getDeviationTotal2() {
 		return total2.getDeviation();
@@ -282,7 +282,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade total na fila 2
+	 * @return Desvio do intervalo de confianca da quantidade total na fila 2
 	 */
 	public double getDeviationNTotal2() {
 		return totalN2.getDeviation();
@@ -290,7 +290,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo em espera na fila 1
+	 * @return Desvio do intervalo de confianca do tempo em espera na fila 1
 	 */
 	public double getDeviationAtraso1() {
 		return atraso1.getDeviation();
@@ -298,7 +298,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade em espera na fila 1
+	 * @return Desvio do intervalo de confianca da quantidade em espera na fila 1
 	 */
 	public double getDeviationNAtraso1() {
 		return atrasoN1.getDeviation();
@@ -306,7 +306,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança do tempo em espera na fila 2
+	 * @return Desvio do intervalo de confianca do tempo em espera na fila 2
 	 */
 	public double getDeviationAtraso2() {
 		return atraso2.getDeviation();
@@ -314,7 +314,7 @@ public class MetricsAgregator {
 	
 	/**
 	 * Retorno de dado coleta
-	 * @return Desvio do intervalo de confiança da quantidade em espera na fila 2
+	 * @return Desvio do intervalo de confianca da quantidade em espera na fila 2
 	 */
 	public double getDeviationNAtraso2() {
 		return atrasoN2.getDeviation();
