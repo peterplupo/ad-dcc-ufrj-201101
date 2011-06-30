@@ -48,13 +48,13 @@ public class TestMetrics {
 
 	@Test
 	public void testGetSuperLimit(){
-		//está falhando
+		//esta falhando
 		assertEquals(25.889999, metrics.getSuperiorLimit(), 0.000001);
 	}
 	
 	@Test
 	public void testGetInferiorLimit(){
-		//está falhando
+		//esta falhando
 		assertEquals(15.0, metrics.getInferiorLimit(), 0.000001);
 	}
 }
