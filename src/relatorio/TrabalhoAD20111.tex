@@ -5,6 +5,7 @@
 \usepackage{epstopdf}
 %\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 \usepackage{tikz}
+\usepackage{indentfirst}
 \hyphenation{li-vro tes-te cha-ve bi-blio-te-ca}
 \hyphenation{co-men-t-rio re-fe-rn-cia}
 \usetikzlibrary{positioning,shapes,shadows,arrows}
@@ -157,36 +158,43 @@ Também vale destacar que temos mais de uma classe para armazenas as estatístic
 \appendix
 \chapter{O Programa}
 
+\newpage
+
 \section{Workflow}
 
-\textbf{Modelo}
-
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, text width=4.5em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{decision} = [diamond, draw, fill=green!20, text width=4em, text badly centered, node distance=4cm, inner sep=0pt]
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=5cm, minimum height=2em]
+\tikzstyle{start} = [draw, circle, fill=black, node distance5em, minimum height=1em]
     
 \begin{tikzpicture}[node distance = 3cm, auto]
     % Place nodes
-    \node [block] (init) {initialize model};
-    \node [cloud, left of=init] (expert) {expert};
-    \node [cloud, right of=init] (system) {system};
-    \node [block, below of=init] (identify) {identify candidate models};
-    \node [block, below of=identify] (evaluate) {evaluate candidate models};
-    \node [block, left of=evaluate, node distance=3cm] (update) {update model};
-    \node [decision, below of=evaluate] (decide) {is best candidate better?};
-    \node [block, below of=decide, node distance=3cm] (stop) {stop};
+    \node [cloud] (init) {início};
+    \node [block, right of=init] (seed) {seleciona semente};
+    \node [block, right of=seed] (processtrans) {fase transiente};
+    \node [block, below of=processtrans] (processrod) {processa m eventos};
+    \node [block, left of=processrod] (colectdata) {coleta estatisticas};
+    \node [decision, below of=colectdata] (decideic) {tamanho mínimo de IC?};
+    \node [block, below of=decideic, node distance=4cm] (groupdata) {agrupa os dados das rodadas};
+    \node [block, below of=groupdata] (estatgeral) {obtem estatísticas gerais};
+    \node [decision, right of=estatgeral, node distance=4.5cm] (decideicgeral) {achou IC?};
+    \node [cloud, right of=decideicgeral, node distance=3cm] (stop) {fim};
     % Draw edges
-    \path [line] (init) -- (identify);
-    \path [line] (identify) -- (evaluate);
-    \path [line] (evaluate) -- (decide);
-    \path [line] (decide) -| node [near start] {yes} (update);
-    \path [line] (update) |- (identify);
-    \path [line] (decide) -- node {no}(stop);
-    \path [line,dashed] (expert) -- (init);
-    \path [line,dashed] (system) -- (init);
-    \path [line,dashed] (system) |- (evaluate);
+    \path [line] (init) -- (seed);
+    \path [line] (seed) -- (processtrans);
+    \path [line] (processtrans) -- (processrod);
+    \path [line] (processrod) -- (colectdata);
+    \path [line] (colectdata) -- (decideic);
+    \path [line] (decideic) -| node {não} (processrod);
+    \path [line] (decideic) -- node {sim} (groupdata);
+    \path [line] (groupdata) -- (estatgeral);
+    \path [line] (estatgeral) -- (decideicgeral);
+    \path [line] (decideicgeral) |- node {não} (processrod);
+    \path [line] (decideicgeral) -- node {sim} (stop);
 \end{tikzpicture}
+
+\newpage
 
 \section{Diagrama de Classes}
 
@@ -407,5 +415,36 @@ Também vale destacar que temos mais de uma classe para armazenas as estatístic
         
 \end{tikzpicture}
 \end{center}
+
+
+\textbf{Modelo}
+
+\tikzstyle{decision} = [diamond, draw, fill=green!20, text width=4.5em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=5cm, minimum height=2em]
+\tikzstyle{start} = [draw, circle, fill=black, node distance5em, minimum height=1em]
+    
+\begin{tikzpicture}[node distance = 3cm, auto]
+    % Place nodes
+    \node [cloud] (init) {início};
+    \node [cloud, left of=init] (expert) {expert};
+    \node [cloud, right of=init] (system) {system};
+    \node [block, below of=init] (identify) {identify candidate models};
+    \node [block, below of=identify] (evaluate) {evaluate candidate models};
+    \node [block, left of=evaluate, node distance=3cm] (update) {update model};
+    \node [decision, below of=evaluate] (decide) {is best candidate better?};
+    \node [cloud, below of=decide, node distance=3cm] (stop) {fim};
+    % Draw edges
+    \path [line] (init) -- (identify);
+    \path [line] (identify) -- (evaluate);
+    \path [line] (evaluate) -- (decide);
+    \path [line] (decide) -| node [near start] {yes} (update);
+    \path [line] (update) |- (identify);
+    \path [line] (decide) -- node {no}(stop);
+    \path [line,dashed] (expert) -- (init);
+    \path [line,dashed] (system) -- (init);
+    \path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
 
 \end{document}          
